@@ -22,8 +22,8 @@ public class CidadeResource {
 	private CidadeService service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Cidade obj = service.buscaId(id);
+	public ResponseEntity<Cidade> find(@PathVariable Integer id) {
+		Cidade obj = service.findId(id);
 		return ResponseEntity.ok().body(obj);
 
 	}
@@ -34,5 +34,12 @@ public class CidadeResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri(); //ao fazer um post retorna a uri do novo registro inserido
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value = "{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Cidade obj, @PathVariable Integer id){
+		obj.setId(id);
+		obj=service.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 }
