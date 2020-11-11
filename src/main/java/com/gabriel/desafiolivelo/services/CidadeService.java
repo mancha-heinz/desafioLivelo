@@ -1,5 +1,6 @@
 package com.gabriel.desafiolivelo.services;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -41,6 +42,9 @@ public class CidadeService {
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("nao eh possivel excluir uma cidaede que possuia pessoas relacionadas");
 		}
-		
+	}
+	
+	public List<Cidade> findAll(){
+		return repo.findAll();
 	}
 }
