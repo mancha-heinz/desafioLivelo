@@ -22,7 +22,7 @@ public class Cliente implements Serializable {
 	private Integer id;
 	private String nome;
 	private String sexo;
-	//@JsonFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataNasc;
 	private Integer idade;
 	@JsonBackReference

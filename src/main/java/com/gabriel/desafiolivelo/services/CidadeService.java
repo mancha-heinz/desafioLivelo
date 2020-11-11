@@ -21,4 +21,9 @@ public class CidadeService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"objeto nao encontrado! id: " + id + ", tipo:" + Cidade.class.getName(), null));
 	}
+	
+	public Cidade insert(Cidade obj) {
+		obj.setId(null); //caso o id for diferente de null o save considera como update
+		return repo.save(obj);
+	}
 }
