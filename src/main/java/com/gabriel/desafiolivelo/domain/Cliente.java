@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -24,6 +25,7 @@ public class Cliente implements Serializable {
 	//@JsonFormat(pattern = "dd-MM-yyyy")
 	private String dataNasc;
 	private Integer idade;
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "cidadeId")
 	private Cidade cidade;

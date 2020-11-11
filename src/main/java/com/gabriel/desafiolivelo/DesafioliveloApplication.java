@@ -44,10 +44,16 @@ public class DesafioliveloApplication implements CommandLineRunner {
 		c2.setDataNasc("01-01-2020");
 		c2.setIdade(15);
 		c2.setCidade(cid2);
+		Cliente c3 = new Cliente();
+		c3.setNome("paulo");
+		c3.setSexo("masc");
+		c3.setDataNasc("03-03-2020");
+		c3.setIdade(31);
+		c3.setCidade(cid2);
 
 		cid1.getClientes().addAll(Arrays.asList(c1));
 
-		clienteRepository.saveAll(Arrays.asList(c1, c2));
+		clienteRepository.saveAll(Arrays.asList(c1, c2, c3));
 
 	}
 
