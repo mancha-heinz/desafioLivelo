@@ -1,36 +1,44 @@
 package com.gabriel.desafiolivelo.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-public class Cidade implements Serializable {
+public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private String estado;
-	@OneToMany(mappedBy = "cidade")
-	private List<Cliente> clientes = new ArrayList<>();
+	private String sexo;
+	//@JsonFormat(pattern = "dd-MM-yyyy")
+	private String dataNasc;
+	private Integer idade;
+	@ManyToOne
+	@JoinColumn(name = "cidadeId")
+	private Cidade cidade;
 
-	public Cidade() {
+	public Cliente() {
 		super();
 	}
 
-	public Cidade(Integer id, String nome, String estado) {
+	public Cliente(Integer id, String nome, String sexo, String dataNasc, Integer idade) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.estado = estado;
+		this.sexo = sexo;
+		this.dataNasc = dataNasc;
+		this.idade = idade;
 	}
 
 	public Integer getId() {
@@ -49,25 +57,36 @@ public class Cidade implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getEstado() {
-		return estado;
+	public String getSexo() {
+		return sexo;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
 	}
 
-	public List<Cliente> getClientes() {
-		return clientes;
+	public String getDataNasc() {
+		return dataNasc;
 	}
 
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
+	public void setDataNasc(String dataNasc) {
+		this.dataNasc = dataNasc;
 	}
 
-	@Override
-	public String toString() {
-		return "Cidade [id=" + id + ", nome=" + nome + ", estado=" + estado + "]";
+	public Integer getIdade() {
+		return idade;
+	}
+
+	public void setIdade(Integer idade) {
+		this.idade = idade;
+	}
+
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
 	}
 
 	@Override
@@ -86,7 +105,7 @@ public class Cidade implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cidade other = (Cidade) obj;
+		Cliente other = (Cliente) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
