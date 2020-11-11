@@ -43,8 +43,4 @@ public class CidadeService {
 			throw new DataIntegrityException("nao eh possivel excluir uma cidaede que possuia pessoas relacionadas");
 		}
 	}
-	
-	public List<Cidade> findAll(){
-		return repo.findAll();
-	}
 }

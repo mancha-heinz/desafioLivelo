@@ -1,8 +1,6 @@
 package com.gabriel.desafiolivelo.resources;
 
 import java.net.URI;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.gabriel.desafiolivelo.domain.Cidade;
-import com.gabriel.desafiolivelo.dto.CidadeDTO;
 import com.gabriel.desafiolivelo.services.CidadeService;
 
 @RestController
@@ -28,7 +25,6 @@ public class CidadeResource {
 	public ResponseEntity<Cidade> find(@PathVariable Integer id) {
 		Cidade obj = service.findId(id);
 		return ResponseEntity.ok().body(obj);
-
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -50,13 +46,5 @@ public class CidadeResource {
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
-	}
-	
-	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<CidadeDTO>> findAll() {
-		List<Cidade> list = service.findAll();
-		List<CidadeDTO> listDTO = list.stream().map(obj -> new CidadeDTO(obj)).collect(Collectors.toList());
-		return ResponseEntity.ok().body(listDTO);
-
 	}
 }
