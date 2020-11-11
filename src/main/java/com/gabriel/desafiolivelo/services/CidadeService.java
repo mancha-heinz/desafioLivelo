@@ -4,10 +4,12 @@ import java.util.Optional;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.gabriel.desafiolivelo.domain.Cidade;
 import com.gabriel.desafiolivelo.repositories.CidadeRepository;
+import com.gabriel.desafiolivelo.services.exceptions.DataIntegrityException;
 import com.gabriel.desafiolivelo.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -30,5 +32,15 @@ public class CidadeService {
 	public Cidade update(Cidade obj) {
 		findId(obj.getId()); //verifica id
 		return repo.save(obj);
+	}
+	
+	public void delete(Integer id) {
+		findId(id);
+		try {
+			repo.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("nao eh possivel excluir uma cidaede que possuia pessoas relacionadas");
+		}
+		
 	}
 }
