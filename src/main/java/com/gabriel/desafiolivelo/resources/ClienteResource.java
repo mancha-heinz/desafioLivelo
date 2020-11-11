@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gabriel.desafiolivelo.domain.Cidade;
-import com.gabriel.desafiolivelo.services.CidadeService;
+import com.gabriel.desafiolivelo.domain.Cliente;
+import com.gabriel.desafiolivelo.services.ClienteService;
 
 @RestController
-@RequestMapping(value = "/cidades")
-public class CidadeResource {
+@RequestMapping(value = "/clientes")
+public class ClienteResource {
 
 	@Autowired
-	private CidadeService service;
+	private ClienteService service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Cidade obj = service.buscaId(id);
+		Cliente obj = service.buscaId(id);
 		return ResponseEntity.ok().body(obj);
 
 	}
