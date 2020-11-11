@@ -18,12 +18,12 @@ public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //gera id automatico
 	private Integer id;
 	private String nome;
 	private String sexo;
 	//@JsonFormat(pattern = "dd-MM-yyyy")
-	private String dataNasc;
+	private Date dataNasc;
 	private Integer idade;
 	@JsonBackReference
 	@ManyToOne
@@ -34,7 +34,7 @@ public class Cliente implements Serializable {
 		super();
 	}
 
-	public Cliente(Integer id, String nome, String sexo, String dataNasc, Integer idade) {
+	public Cliente(Integer id, String nome, String sexo, Date dataNasc, Integer idade) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -67,11 +67,11 @@ public class Cliente implements Serializable {
 		this.sexo = sexo;
 	}
 
-	public String getDataNasc() {
+	public Date getDataNasc() {
 		return dataNasc;
 	}
 
-	public void setDataNasc(String dataNasc) {
+	public void setDataNasc(Date dataNasc) {
 		this.dataNasc = dataNasc;
 	}
 
