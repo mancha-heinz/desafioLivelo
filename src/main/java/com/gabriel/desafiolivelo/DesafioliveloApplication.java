@@ -30,8 +30,13 @@ public class DesafioliveloApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Cidade cid1 = new Cidade(null, "passo fundo", "rs");
 		Cidade cid2 = new Cidade(null, "marau", "rs");
+		Cidade cid3 = new Cidade(null, "porto alegre", "rs");
+		Cidade cid4 = new Cidade(null, "torres", "rs");
+		Cidade cid5 = new Cidade(null, "pelotas", "rs");
+		Cidade cid6 = new Cidade(null, "carazinho", "rs");
+		Cidade cid7 = new Cidade(null, "alegrete", "rs");
 
-		cidadeRepository.saveAll(Arrays.asList(cid1, cid2));
+		cidadeRepository.saveAll(Arrays.asList(cid1, cid2, cid3, cid4, cid5, cid6, cid7)); //salva as cidades no bd
 
 		SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
 		Cliente c1 = new Cliente();
