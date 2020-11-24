@@ -66,8 +66,8 @@ public class CidadeResource {
 			@RequestParam(value ="linesPage", defaultValue = "24" ) Integer linesPage,
 			@RequestParam(value ="orderBy", defaultValue = "nome" ) String orderBy,
 			@RequestParam(value ="direction", defaultValue = "ASC" ) String direction){
-		Page<Cidade> list= service.findPage(page, linesPage, orderBy, direction);
-		Page<CidadeDTO> listaDto=list.map(obj->new CidadeDTO(obj));
+		Page<Cidade> list = service.findPage(page, linesPage, orderBy, direction);
+		Page<CidadeDTO> listaDto=list.map(obj -> new CidadeDTO(obj));
 		return ResponseEntity.ok().body(listaDto);
 	}
 }
